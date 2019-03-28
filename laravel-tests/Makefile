@@ -11,7 +11,7 @@ conf-git-ranieri:
 	git config user.name "Ranieri"
 
 bd-conf:
-	mysql -u root -p --execute="drop database if exists laraveltest; create database laraveltest; drop user if exists 'laratest'; create user 'laratest' identified by 'larasecret'; grant all privileges on laraveltest.* to 'laratest';"
+	mysql -u root -p --execute="drop database if exists laraveltest; create database laraveltest; drop user if exists 'laratest'; create user 'laratest' identified with mysql_native_password by 'larasecret'; grant all privileges on laraveltest.* to 'laratest';"
 	sed -i 's/DB_DATABASE.*/DB_DATABASE=laraveltest/' .env
 	sed -i 's/DB_USERNAME.*/DB_USERNAME=laratest/' .env
 	sed -i 's/DB_PASSWORD.*/DB_PASSWORD=larasecret/' .env
