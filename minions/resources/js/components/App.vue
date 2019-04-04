@@ -35,7 +35,9 @@
         // To do
       },
       read() {
-        // To do
+        window.axios.get('/api/cruds').then(({ data }) => {
+          // console.log(data)
+        });
       },
       update(id, color) {
         // To do
