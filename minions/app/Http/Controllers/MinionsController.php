@@ -13,7 +13,7 @@ class MinionsController extends Controller
      */
     public function index()
     {
-        //
+        return response(Minion::all()->jsonSerialize(), Response::HTTP_OK);
     }
 
     /**
@@ -21,9 +21,14 @@ class MinionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Generator $faker)
     {
-        //
+        $minion = new Minion();
+        $minion->name = $faker->lexify('????????');
+        $minion->color = $faker->boolean ? 'red' : 'green';
+        $minion->save();
+
+        return response($minion->jsonSerialize(), Response::HTTP_CREATED);
     }
 
     /**
@@ -35,7 +40,11 @@ class MinionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $minion = Minion::findOrFail($id);
+        $minion->color = $request->color;
+        $minion->save();
+
+        return response(null, Response::HTTP_OK);
     }
 
     /**
@@ -46,6 +55,9 @@ class MinionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Minion::destroy($id);
+
+        return response(null, Response::HTTP_OK);
+
     }
 }
