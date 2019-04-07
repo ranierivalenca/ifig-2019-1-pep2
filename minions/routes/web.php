@@ -14,7 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::resource('/minions', 'MinionsController', [
-  'except' => ['edit', 'show', 'store']
-]);
