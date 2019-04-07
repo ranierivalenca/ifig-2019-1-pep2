@@ -1,13 +1,14 @@
 <template>
   <div class="minion">
     <div class="col-1">
-      <img :src="image"/>
+      <!-- <img :src="image" :alt="image" /> -->
+      <span :class="klass"></span>
     </div>
     <div class="col-2">
       <h3>Name: {{ name | properCase }}</h3>
       <select @change="update">
         <option
-          v-for="col in [ 'red', 'green' ]"
+          v-for="col in [ 'red', 'green', 'blue' ]"
           :value="col"
           :key="col"
           :selected="col === color ? 'selected' : ''"
@@ -20,8 +21,8 @@
 <script>
   export default {
     computed: {
-      image() {
-        return `/images/${this.color}.png`;
+      klass() {
+        return `color ${this.color}`;
       }
     },
     methods: {
